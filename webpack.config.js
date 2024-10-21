@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: {
         // Styles and scripts to be bundled
-        script: './src/js/bd-carousel.js',
+        script: './src/js/script.js',
         styles: './src/scss/bd-carousel.scss',
 
         // Blocks
@@ -14,6 +14,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js', // Output JS file (e.g., slider.js)
+    },
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'src'), // This resolves '@/...' to './src/...'
+        },
+        extensions: ['.js', '.json'], // Optional: Add the file extensions you're working with
     },
     module: {
         rules: [
