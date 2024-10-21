@@ -1,4 +1,4 @@
-export default function createButton(type) {
+export default function createButton(element, type) {
     const button = document.createElement("button");
     const icon = document.createElement("i");
     icon.classList.add("bi");
@@ -10,5 +10,9 @@ export default function createButton(type) {
         icon.classList.add("bi-arrow-left-short");
     }
     button.appendChild(icon);
+
+    // Append Button to the DOM
+    element.appendChild(button);
+
     return button
 }

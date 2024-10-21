@@ -21,19 +21,14 @@ class BdCarousel {
         const track = this.wrapper;
         const slides = Array.from(track.children);
         console.log(slides);
-        const nextButton = createButton('next');
-        const prevButton = createButton('prev');
-        const dotsNav = createNav();
+        const nextButton = createButton(carousel, 'next');
+        const prevButton = createButton(carousel, 'prev');
+        const dotsNav = createNav(carousel);
         let slideWidth = slides[0].getBoundingClientRect().width;
         const speed = this.speed;
         const direction = this.direction;
         const autoplay = this.autoplay;
         const autoplayTimer = this.autoplayTimer;
-
-        // Append navigation to carousel
-        carousel.appendChild(nextButton);
-        carousel.appendChild(prevButton);
-        carousel.appendChild(dotsNav);
 
         // Disable button clicks
         const buttonsDisabled = (boolean) => {
