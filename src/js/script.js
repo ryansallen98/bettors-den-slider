@@ -1,25 +1,5 @@
-// Create Button Function
-function bdCreateButton(type) {
-    const button = document.createElement("button");
-    const icon = document.createElement("i");
-    icon.classList.add("bi");
-    if (type === 'next') {
-        button.classList.add("bd-carousel__btn--next");
-        icon.classList.add("bi-arrow-right-short");
-    } else if (type === 'prev') {
-        button.classList.add("bd-carousel__btn--prev");
-        icon.classList.add("bi-arrow-left-short");
-    }
-    button.appendChild(icon);
-    return button
-}
-
-// Create Nav Function
-function bdCreateNav() {
-    const nav = document.createElement("div");
-    nav.classList.add("bd-carousel__nav");
-    return nav;
-}
+import createButton from '@/js/buttons';
+import createNav from '@/js/navigation';
 
 class BdCarousel {
     constructor(element) {
@@ -41,9 +21,9 @@ class BdCarousel {
         const track = this.wrapper;
         const slides = Array.from(track.children);
         console.log(slides);
-        const nextButton = bdCreateButton('next');
-        const prevButton = bdCreateButton('prev');
-        const dotsNav = bdCreateNav();
+        const nextButton = createButton('next');
+        const prevButton = createButton('prev');
+        const dotsNav = createNav();
         let slideWidth = slides[0].getBoundingClientRect().width;
         const speed = this.speed;
         const direction = this.direction;
