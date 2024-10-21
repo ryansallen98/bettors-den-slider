@@ -29,7 +29,7 @@ class BdCarousel {
         const nav = createNav(carousel);
 
         // Set initial variables
-        const direction = this.direction;
+        const direction = this.direction === 'left' ? true : false;
         const autoplay = this.autoplay;
         const speed = this.speed;
         const autoplayTimer = this.autoplayTimer;
@@ -55,7 +55,7 @@ class BdCarousel {
             const nextDot = currentDot.nextElementSibling;
 
             if (nextSlide) {
-                moveToSlide({ currentSlide, targetSlide: nextSlide, isRight: true, nextButton, prevButton, dots, slideWidth, speed });
+                moveToSlide({ currentSlide, targetSlide: nextSlide, isRight: direction, nextButton, prevButton, dots, slideWidth, speed });
                 updateNav(currentDot, nextDot, autoplayTimer);
             }
         });
@@ -68,7 +68,7 @@ class BdCarousel {
             const prevDot = currentDot.previousElementSibling;
 
             if (prevSlide) {
-                moveToSlide({ currentSlide, targetSlide: prevSlide, isRight: true, nextButton, prevButton, dots, slideWidth, speed });
+                moveToSlide({ currentSlide, targetSlide: prevSlide, isRight: direction, nextButton, prevButton, dots, slideWidth, speed });
                 updateNav(currentDot, prevDot, autoplayTimer);
             }
         });
@@ -86,9 +86,9 @@ class BdCarousel {
             const targetSlide = slides[targetIndex];
 
             if (targetIndex > currentSlideIndex) {
-                moveToSlide({ currentSlide, targetSlide, isRight: true, nextButton, prevButton, dots, slideWidth, speed });
+                moveToSlide({ currentSlide, targetSlide, isRight: direction, nextButton, prevButton, dots, slideWidth, speed });
             } else if (targetIndex < currentSlideIndex) {
-                moveToSlide({ currentSlide, targetSlide, isRight: true, nextButton, prevButton, dots, slideWidth, speed });
+                moveToSlide({ currentSlide, targetSlide, isRight: direction, nextButton, prevButton, dots, slideWidth, speed });
             }
 
             updateNav(currentDot, targetDot, autoplayTimer);
@@ -111,7 +111,7 @@ class BdCarousel {
                     const currentDot = nav.querySelector(".active");
                     const nextDot = currentDot.nextElementSibling || dots[0];
 
-                    moveToSlide({ currentSlide, targetSlide: nextSlide, isRight: true, nextButton, prevButton, dots, slideWidth, speed });
+                    moveToSlide({ currentSlide, targetSlide: nextSlide, isRight: direction, nextButton, prevButton, dots, slideWidth, speed });
                     updateNav(currentDot, nextDot, autoplayTimer);
                 }, autoplayTimer);
             }
