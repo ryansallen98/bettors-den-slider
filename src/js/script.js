@@ -1,5 +1,5 @@
-import createButton from '@/js/buttons';
-import createNav from '@/js/navigation';
+import { createButton, disableButtons } from '@/js/buttons';
+import { createNav, disableNav } from '@/js/navigation';
 
 class BdCarousel {
     constructor(element) {
@@ -17,18 +17,22 @@ class BdCarousel {
     }
 
     init() {
+        // Create carousel elements
         const carousel = this.element;
         const track = this.wrapper;
         const slides = Array.from(track.children);
-        console.log(slides);
+
+        // Create buttons and nav
         const nextButton = createButton(carousel, 'next');
         const prevButton = createButton(carousel, 'prev');
         const dotsNav = createNav(carousel);
-        let slideWidth = slides[0].getBoundingClientRect().width;
-        const speed = this.speed;
+
+        // Set initial variables
         const direction = this.direction;
         const autoplay = this.autoplay;
+        const speed = this.speed;
         const autoplayTimer = this.autoplayTimer;
+        let slideWidth = slides[0].getBoundingClientRect().width;
 
         // Disable button clicks
         const buttonsDisabled = (boolean) => {

@@ -1,4 +1,4 @@
-export default function createButton(element, type) {
+export function createButton(element, type) {
     const button = document.createElement("button");
     const icon = document.createElement("i");
     icon.classList.add("bi");
@@ -15,4 +15,10 @@ export default function createButton(element, type) {
     element.appendChild(button);
 
     return button
+}
+
+export function disableButtons(buttons, boolean) {
+    buttons.forEach((button) => {
+        button.disabled = boolean;
+    });
 }
