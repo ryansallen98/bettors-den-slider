@@ -1,3 +1,4 @@
+import './wpEditorSlider.scss'
 import { InnerBlocks, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, TextControl } from '@wordpress/components';
 

@@ -1,4 +1,3 @@
-import './wpEditorSlide.scss'
 import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, Button, TextControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { useState } from '@wordpress/element';
