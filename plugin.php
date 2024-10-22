@@ -2,7 +2,7 @@
 /*
 Plugin Name: Bettors Den Slider
 Description: Slider wordpress plug built for bettors den homepage.
-Version: 1.0.0
+Version: 1.0.1
 Requires PHP: 7.0
 Requires at least: 5.0
 Author: Ryan Allen
