@@ -1,4 +1,3 @@
-import './wpEditorSlide.scss'
 import { InnerBlocks, InspectorControls, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
 import { PanelBody, PanelRow, Button, TextControl, ToolbarGroup, ToolbarButton } from '@wordpress/components';
 import { useState } from '@wordpress/element';
@@ -19,43 +18,43 @@ const positionConfig = [
 
 export default function wpEditorSlide(props) {
     const { attributes, setAttributes } = props;
-    const [imageURL, setImageURL] = useState(attributes.imageURL || '');
-    const [imageAlt, setImageAlt] = useState(attributes.imageAlt || '');
+    const [videoURL, setVideoURL] = useState(attributes.videoURL || '');
+    const [videoAlt, setVideoAlt] = useState(attributes.videoAlt || '');
     const [viewport, setViewport] = useState('desktop');
 
-    const onImageSelect = (media) => {
-        const thumbnailURL = media.sizes.thumbnail ? media.sizes.thumbnail.url : media.url;
-        setImageURL(thumbnailURL);
+    const onVideoSelect = (media) => {
+        setVideoURL(media.url);
         setAttributes({
-            imageID: media.id,
-            imageURL: media.sizes.full.url,
-            imageAlt: media.alt
+            videoID: media.id,
+            videoURL: media.url,
+            videoAlt: media.alt
         });
     };
 
-    const onImageURLChange = (url) => {
-        setImageURL(url);
+    const onVideoURLChange = (url) => {
+        setVideoURL(url);
     };
 
-    const onImageAltChange = (alt) => {
-        setImageAlt(alt);
+    const onVideoAltChange = (alt) => {
+        setVideoAlt(alt);
     };
 
-    const applyImageURL = () => {
-        setAttributes({ imageURL, imageAlt });
+    const applyVideoURL = () => {
+        setAttributes({ videoURL, videoAlt });
     };
 
     return (
         <>
             <InspectorControls>
-                <PanelBody title='Background Image' initialOpen={true}>
-                    {!attributes.imageURL ?
+                <PanelBody title='Background Video' initialOpen={true}>
+                    {!attributes.videoURL ?
                         <>
                             <PanelRow>
                                 <MediaUploadCheck>
                                     <MediaUpload
-                                        onSelect={onImageSelect}
-                                        value={attributes.imageID}
+                                        onSelect={onVideoSelect}
+                                        value={attributes.videoID}
+                                        allowedTypes={['video']}
                                         render={({ open }) => {
                                             return <Button variant='primary' onClick={open}>Media Library</Button>
                                         }}
@@ -68,21 +67,21 @@ export default function wpEditorSlide(props) {
                             <PanelRow>
                                 <div>
                                     <TextControl
-                                        label="Image URL"
-                                        value={imageURL}
-                                        onChange={onImageURLChange}
-                                        placeholder="Enter image URL"
+                                        label="Video URL"
+                                        value={videoURL}
+                                        onChange={onVideoURLChange}
+                                        placeholder="Enter video URL"
                                         style={{ flex: '1' }}
                                     />
                                     <TextControl
-                                        label="Image Alt"
-                                        value={imageAlt}
-                                        onChange={onImageAltChange}
-                                        placeholder="Enter image alt text"
+                                        label="Video Alt"
+                                        value={videoAlt}
+                                        onChange={onVideoAltChange}
+                                        placeholder="Enter video alt text"
                                         style={{ flex: '1' }}
                                     />
-                                    <Button variant='secondary' onClick={applyImageURL} style={{ marginTop: '-20px' }}>
-                                        Apply External Image
+                                    <Button variant='secondary' onClick={applyVideoURL} style={{ marginTop: '-20px' }}>
+                                        Apply External Video
                                     </Button>
                                 </div>
                             </PanelRow>
@@ -90,18 +89,19 @@ export default function wpEditorSlide(props) {
                         :
                         <PanelRow>
                             <div>
-                                <img
-                                    src={attributes.imageURL}
+                                <video
+                                    src={attributes.videoURL}
                                     alt=""
                                     style={{
                                         width: '100%',
                                         height: 'auto'
                                     }}
+                                    controls
                                 />
                                 <Button variant='secondary' onClick={() => {
-                                    setAttributes({ imageURL: '', imageID: 0 });
-                                    setImageURL('');
-                                }}>Remove Image</Button>
+                                    setAttributes({ videoURL: '', videoID: 0 });
+                                    setVideoURL('');
+                                }}>Remove Video</Button>
                             </div>
                         </PanelRow>
                     }
@@ -154,13 +154,16 @@ export default function wpEditorSlide(props) {
             </InspectorControls>
             <div className='bd-carousel__slide'>
                 <div className='bd-carousel__image-wrapper'>
-                    <img
-                        src={attributes.imageURL}
-                        alt={attributes.imageAlt}
+                    <video
+                        src={attributes.videoURL}
+                        alt={attributes.videoAlt}
                         className={`bd-carousel__image`}
                         data-bd-bg-position-desktop={`${attributes.desktopPosition}`} 
                         data-bd-bg-position-tablet={`${attributes.tabletPosition}`}
                         data-bd-bg-position-mobile={`${attributes.mobilePosition}`}
+                        autoPlay
+                        loop
+                        muted
                     />
                     <div className='bd-carousel__cover'></div>
                 </div>

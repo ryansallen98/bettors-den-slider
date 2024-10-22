@@ -1,9 +1,9 @@
 import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
-import wpEditorSlide from './wpEditorSlide';
+import wpEditorVideoSlide from './wpEditorVideoSlide';
 
-registerBlockType("bettors-den-slider/slide", {
-    title: "Bettors Den Slide",
+registerBlockType("bettors-den-slider/video-slide", {
+    title: "Bettors Den Video Slide",
     category: 'bettors-den-slider',
     icon: 'slides',
     supports: {
@@ -11,13 +11,12 @@ registerBlockType("bettors-den-slider/slide", {
     },
     attributes: {
         align: { type: "string", default: "full" },
-        imageID: { type: "number" },
-        imageURL: { type: "string" },
-        imageAlt: { type: "string" },
+        videoID: { type: "number" },
+        videoURL: { type: "string" },
         desktopPosition: { type: "string", default: "center" },
         tabletPosition: { type: "string", default: "center" },
         mobilePosition: { type: "string", default: "center" },
     },
-    edit: wpEditorSlide,
+    edit: wpEditorVideoSlide,
     save: () => <InnerBlocks.Content />
 });

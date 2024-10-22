@@ -9,6 +9,7 @@ module.exports = {
 
         // Blocks
         slide: './src/blocks/slide/slide.js',
+        videoSlide: './src/blocks/videoSlide/videoSlide.js',
         slider: './src/blocks/slider/slider.js',
     },
     output: {

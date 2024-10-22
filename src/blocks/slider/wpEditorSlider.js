@@ -37,8 +37,7 @@ export default function wpEditorSlider(props) {
                 <div style={{ padding: '0px' }}>
                     <InnerBlocks
                         // allowedBlocks={['bettors-den-slider/slide']}
-                        allowedBlocks={['bettors-den-slider/slide']}
-                        template={[['bettors-den-slider/slide']]}
+                        allowedBlocks={['bettors-den-slider/slide', 'bettors-den-slider/video-slide']}  
                         templateLock={false} // Ensures that the user can add multiple slides
                         renderAppender={InnerBlocks.ButtonBlockAppender}
                     />
