@@ -115,7 +115,7 @@ class BdCarousel {
                     updateNav(currentDot, nextDot, autoplayTimer);
                 }, autoplayTimer);
             }
-            autoplayInterval = startAutoplay();
+            let autoplayInterval = startAutoplay();
 
 
             nextButton.addEventListener("click", () => {
